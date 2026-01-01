@@ -23,7 +23,7 @@ function getGreeting() {
   if (hour >= 17 && hour < 21) return "Good evening ";
   return "Hey, night owl ✨";
 }
-finalText.textContent = `${getGreeting()}, Happy Birthday Manyatha! 💫`;
+initialText.textContent = `${getGreeting()}, Happy Birthday Manyatha! 💫`;
 
 // Update page
 function goToPage(index) {
@@ -178,3 +178,4 @@ function bigFinaleSurprise() {
 // Initialize
 
 goToPage(0); // Sets initial button states
+
