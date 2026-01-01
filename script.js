@@ -10,7 +10,7 @@ let alreadyOpened = false;
 
 // Random initial glow
 (function randomGlow() {
-  const colors = ['#7f5af0', '#ff7ac7', '#00eaff', '#ffd166', '#06d6a0', "#1E04C4" ];
+  const colors = ['#7f5af0', '#ff7ac7', '#00eaff', '#ffd166', '#06d6a0'];
   const chosen = colors[Math.floor(Math.random() * colors.length)];
   document.documentElement.style.setProperty('--glow-color', chosen);
 })();
@@ -18,12 +18,12 @@ let alreadyOpened = false;
 // Greeting
 function getGreeting() {
   const hour = new Date().getHours();
-  if (hour >= 5 && hour < 12) return "Good morning ";
-  if (hour >= 12 && hour < 17) return "Good afternoon ";
-  if (hour >= 17 && hour < 21) return "Good evening ";
+  if (hour >= 5 && hour < 12) return "Good morning 🌤️";
+  if (hour >= 12 && hour < 17) return "Good afternoon ☀️";
+  if (hour >= 17 && hour < 21) return "Good evening 🌙";
   return "Hey, night owl ✨";
 }
-initialText.textContent = `${getGreeting()}, Happy Birthday Manyatha! 💫`;
+finalText.textContent = `${getGreeting()}, Happy Birthday! 💫`;
 
 // Update page
 function goToPage(index) {
@@ -176,6 +176,4 @@ function bigFinaleSurprise() {
 }
 
 // Initialize
-
 goToPage(0); // Sets initial button states
-
