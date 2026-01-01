@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday ✨</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background stars -->
+  <div class="stars"></div>
+
+  <!-- Balloons container -->
+  <div id="balloons"></div>
+
+  <!-- Main container -->
+  <div class="container">
+    <div class="pages" id="pages">
+      
+      <!-- PAGE 1 -->
+      <section class="page active" data-color="#7f5af0">
+        <h1 class="glow">Hey 👋</h1>
+        <p class="sub">I made something just for you</p>
+        <img src="manyatha.jpg" class="photo" alt="Manyatha">
+        <button id="btn" class="surprise-btn">Tap for Surprise 🎁</button>
+      </section>
+
+      <!-- PAGE 2 -->
+      <section class="page" data-color="#ff7ac7">
+        <h2 class="glow">Happy Birthday ✨</h2>
+        <img src="manyatha1.jpg" class="photo" alt="Manyatha">
+        <p class="small">
+          Hope this year feels lighter, calmer,<br>
+          and kinder to you 🌙
+        </p>
+      </section>
+
+      <!-- PAGE 3 -->
+      <section class="page" data-color="#00eaff">
+        <h2 class="glow">A Few Moments 📸</h2>
+        <div class="photo-grid">
+          <img src="memmory1.jfif" alt="Memory 1">
+          <img src="memmory2.jfif" alt="Memory 2">
+        </div>
+        <p class="small">Some smiles deserve to be remembered.</p>
+      </section>
+
+      <!-- PAGE 4 -->
+      <section class="page" data-color="#ffd166">
+        <h2 class="glow" id="finalText">Wishing you the best year yet 💫</h2>
+        <p class="small">
+          Peace, progress,<br>
+          and moments that make you proud of yourself.
+        </p>
+        <p class="hint">🎈 Tap the balloons!</p>
+      </section>
+
+    </div>
+
+    <!-- Navigation Buttons & Dots -->
+    <div class="navigation">
+      <button class="nav-btn back-btn">← Back</button>
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <button class="nav-btn forward-btn">Forward →</button>
+    </div>
+  </div>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
