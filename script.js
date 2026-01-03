@@ -5,6 +5,9 @@ const forwardBtn = document.querySelector('.forward-btn');
 const surpriseBtn = document.getElementById('btn');
 const balloonsContainer = document.getElementById('balloons');
 const finalText = document.getElementById('finalText');
+const memoryTrack = document.querySelector('.memory-track');
+const indicators = document.querySelectorAll('.carousel-indicators .indicator');
+
 let currentPage = 0;
 let alreadyOpened = false;
 
@@ -15,7 +18,7 @@ let alreadyOpened = false;
   document.documentElement.style.setProperty('--glow-color', chosen);
 })();
 
-// Greeting
+// Greeting based on time
 function getGreeting() {
   const hour = new Date().getHours();
   if (hour >= 5 && hour < 12) return "Good morning 🌤️";
@@ -28,22 +31,23 @@ finalText.textContent = `${getGreeting()}, Happy Birthday! 💫`;
 // Update page
 function goToPage(index) {
   if (index < 0 || index >= pages.length) return;
-
   pages.forEach(p => p.classList.remove('active'));
   dots.forEach(d => d.classList.remove('active'));
-
   pages[index].classList.add('active');
   dots[index].classList.add('active');
-
   currentPage = index;
 
-  // Update glow color
   const color = pages[index].getAttribute('data-color');
   document.documentElement.style.setProperty('--glow-color', color);
 
-  // Update button states
   backBtn.disabled = index === 0;
   forwardBtn.disabled = index === pages.length - 1;
+
+  // Reset memory carousel when entering Page 3
+  if (index === 2 && memoryTrack) {
+    memoryTrack.scrollLeft = 0;
+    updateIndicators();
+  }
 
   // Finale on last page
   if (index === pages.length - 1) {
@@ -54,11 +58,10 @@ function goToPage(index) {
   }
 }
 
-// Navigation buttons
+// Navigation
 backBtn.addEventListener('click', () => goToPage(currentPage - 1));
 forwardBtn.addEventListener('click', () => goToPage(currentPage + 1));
 
-// Surprise button starts the journey
 surpriseBtn.addEventListener('click', () => {
   if (alreadyOpened) return;
   alreadyOpened = true;
@@ -68,14 +71,13 @@ surpriseBtn.addEventListener('click', () => {
   surpriseBtn.style.display = 'none';
 });
 
-// Swipe & keyboard still work (optional, kept from previous)
+// Keyboard & Swipe
 document.addEventListener('keydown', (e) => {
   if (!alreadyOpened) return;
   if (e.key === 'ArrowRight') goToPage(currentPage + 1);
   if (e.key === 'ArrowLeft') goToPage(currentPage - 1);
 });
 
-// Touch swipe
 let touchStartX = 0;
 document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, { passive: true });
 document.addEventListener('touchend', e => {
@@ -87,9 +89,24 @@ document.addEventListener('touchend', e => {
   }
 }, { passive: true });
 
-// Balloons, Confetti, and Finale functions remain the same as previous version
-// (createBalloons, startConfetti, animateConfetti, bigFinaleSurprise)
+// Memory Carousel Indicators
+function updateIndicators() {
+  if (!memoryTrack || indicators.length === 0) return;
+  const scrollLeft = memoryTrack.scrollLeft;
+  const width = memoryTrack.clientWidth;
+  const currentIndex = Math.round(scrollLeft / width);
 
+  indicators.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentIndex);
+  });
+}
+
+if (memoryTrack) {
+  memoryTrack.addEventListener('scroll', updateIndicators);
+  updateIndicators(); // Initial
+}
+
+// Balloons
 function createBalloons(count = 12) {
   for (let i = 0; i < count; i++) {
     setTimeout(() => {
@@ -98,19 +115,20 @@ function createBalloons(count = 12) {
       balloon.style.left = Math.random() * 90 + 'vw';
       balloon.style.animationDuration = (8 + Math.random() * 6) + 's';
       balloon.style.background = `hsl(${Math.random() * 360}, 80%, 65%)`;
-      
+     
       balloon.addEventListener('click', () => {
         balloon.style.transform = 'scale(0)';
         balloon.style.opacity = '0';
         startConfetti();
         setTimeout(() => balloon.remove(), 300);
       });
-      
+     
       balloonsContainer.appendChild(balloon);
     }, i * 300);
   }
 }
 
+// Confetti
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 let confettiParticles = [];
@@ -153,6 +171,7 @@ function animateConfetti() {
   });
   requestAnimationFrame(animateConfetti);
 }
+
 animateConfetti();
 
 function bigFinaleSurprise() {
@@ -176,4 +195,4 @@ function bigFinaleSurprise() {
 }
 
 // Initialize
-goToPage(0); // Sets initial button states
+goToPage(0);
