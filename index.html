@@ -7,17 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <!-- Background stars -->
   <div class="stars"></div>
-
   <!-- Balloons container -->
   <div id="balloons"></div>
-
   <!-- Main container -->
   <div class="container">
     <div class="pages" id="pages">
-      
+     
       <!-- PAGE 1 -->
       <section class="page active" data-color="#7f5af0">
         <h1 class="glow">Hey 👋</h1>
@@ -36,33 +33,42 @@
         </p>
       </section>
 
-      <!-- PAGE 3 -->
+      <!-- PAGE 3 - Updated Memory Carousel -->
       <section class="page" data-color="#00eaff">
         <h2 class="glow">A Few Moments 📸</h2>
-        <div class="photo-grid">
-          <img src="memmory1.jfif" alt="Memory 1">
-          <img src="memmory2.jfif" alt="Memory 2">
-          <img src="memmory4.jfif" alt="Memory 3">
+        
+        <div class="memory-carousel">
+          <div class="memory-track">
+            <img src="memmory1.jfif" alt="Memory 1">
+            <img src="memmory2.jfif" alt="Memory 2">
+            <img src="memmory4.jfif" alt="Memory 3">
+          </div>
         </div>
-        <p class="small">Some smiles deserve to be remembered.</p>
+
+        <div class="carousel-indicators">
+          <span class="indicator active"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+        </div>
+
+        <p class="small">Swipe to relive these beautiful moments ✨</p>
       </section>
 
       <!-- PAGE 4 -->
-            <section class="page" data-color="#ff6b6b">
+      <section class="page" data-color="#ff6b6b">
         <h2 class="glow type-text">From Your Brother ❤️</h2>
         <p class="long-message type-text">
           Dear Manyatha,<br><br>
-          Having you as my sister (even if not by blood) is one of the biggest blessings in my life. 
+          Having you as my sister (even if not by blood) is one of the biggest blessings in my life.
           You've always been there with your crazy laughs, endless support, and that perfect advice when I need it most.<br><br>
-          Thank you for all the memories and for making every day brighter. 
+          Thank you for all the memories and for making every day brighter.
           You're kind, and absolutely irreplaceable.<br><br>
-          On your birthday, I wish you a year full of dreams coming true, good health, and pure happiness. 
-          You deserve the very best—always and tht's the reason I'm ur bro 😁 (chill just joking).<br><br>
+          On your birthday, I wish you a year full of dreams coming true, good health, and pure happiness.
+          You deserve the very best—always and that's the reason I'm ur bro 😁 (chill just joking).<br><br>
           Happy Birthday, sis!🎉<br>
-       
         </p>
       </section>
-      
+     
       <!-- PAGE 5 -->
       <section class="page" data-color="#ffd166">
         <h2 class="glow" id="finalText">Wishing you the best year yet 💫</h2>
@@ -72,7 +78,6 @@
         </p>
         <p class="hint">🎈 Tap the balloons!</p>
       </section>
-
     </div>
 
     <!-- Navigation Buttons & Dots -->
@@ -91,9 +96,6 @@
 
   <!-- Confetti canvas -->
   <canvas id="confetti"></canvas>
-
   <script src="script.js"></script>
 </body>
 </html>
-
-
