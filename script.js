@@ -5,9 +5,6 @@ const forwardBtn = document.querySelector('.forward-btn');
 const surpriseBtn = document.getElementById('btn');
 const balloonsContainer = document.getElementById('balloons');
 const finalText = document.getElementById('finalText');
-const memoryTrack = document.querySelector('.memory-track');
-const indicators = document.querySelectorAll('.carousel-indicators .indicator');
-
 let currentPage = 0;
 let alreadyOpened = false;
 
@@ -18,13 +15,13 @@ let alreadyOpened = false;
   document.documentElement.style.setProperty('--glow-color', chosen);
 })();
 
-// Greeting based on time
+// Greeting
 function getGreeting() {
   const hour = new Date().getHours();
-  if (hour >= 5 && hour < 12) return "Good morning 🌤️";
-  if (hour >= 12 && hour < 17) return "Good afternoon ☀️";
-  if (hour >= 17 && hour < 21) return "Good evening 🌙";
-  return "Hey, night owl ✨";
+  if (hour >= 5 && hour < 12) return "Good morning";
+  if (hour >= 12 && hour < 17) return "Good afternoon";
+  if (hour >= 17 && hour < 21) return "Good evening";
+  return "Hey, night owl";
 }
 finalText.textContent = `${getGreeting()}, Happy Birthday! 💫`;
 
@@ -36,19 +33,12 @@ function goToPage(index) {
   pages[index].classList.add('active');
   dots[index].classList.add('active');
   currentPage = index;
-
+  // Update glow color
   const color = pages[index].getAttribute('data-color');
   document.documentElement.style.setProperty('--glow-color', color);
-
+  // Update button states
   backBtn.disabled = index === 0;
   forwardBtn.disabled = index === pages.length - 1;
-
-  // Reset memory carousel when entering Page 3
-  if (index === 2 && memoryTrack) {
-    memoryTrack.scrollLeft = 0;
-    updateIndicators();
-  }
-
   // Finale on last page
   if (index === pages.length - 1) {
     setTimeout(() => {
@@ -58,10 +48,11 @@ function goToPage(index) {
   }
 }
 
-// Navigation
+// Navigation buttons
 backBtn.addEventListener('click', () => goToPage(currentPage - 1));
 forwardBtn.addEventListener('click', () => goToPage(currentPage + 1));
 
+// Surprise button starts the journey
 surpriseBtn.addEventListener('click', () => {
   if (alreadyOpened) return;
   alreadyOpened = true;
@@ -71,7 +62,7 @@ surpriseBtn.addEventListener('click', () => {
   surpriseBtn.style.display = 'none';
 });
 
-// Keyboard & Swipe
+// Swipe & keyboard
 document.addEventListener('keydown', (e) => {
   if (!alreadyOpened) return;
   if (e.key === 'ArrowRight') goToPage(currentPage + 1);
@@ -88,23 +79,6 @@ document.addEventListener('touchend', e => {
     else goToPage(currentPage - 1);
   }
 }, { passive: true });
-
-// Memory Carousel Indicators
-function updateIndicators() {
-  if (!memoryTrack || indicators.length === 0) return;
-  const scrollLeft = memoryTrack.scrollLeft;
-  const width = memoryTrack.clientWidth;
-  const currentIndex = Math.round(scrollLeft / width);
-
-  indicators.forEach((dot, i) => {
-    dot.classList.toggle('active', i === currentIndex);
-  });
-}
-
-if (memoryTrack) {
-  memoryTrack.addEventListener('scroll', updateIndicators);
-  updateIndicators(); // Initial
-}
 
 // Balloons
 function createBalloons(count = 12) {
@@ -128,7 +102,6 @@ function createBalloons(count = 12) {
   }
 }
 
-// Confetti
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 let confettiParticles = [];
@@ -171,7 +144,6 @@ function animateConfetti() {
   });
   requestAnimationFrame(animateConfetti);
 }
-
 animateConfetti();
 
 function bigFinaleSurprise() {
