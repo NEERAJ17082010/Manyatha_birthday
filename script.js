@@ -23,7 +23,7 @@ function getGreeting() {
   if (hour >= 17 && hour < 21) return "Good evening";
   return "Hey, night owl";
 }
-finalText.textContent = `${getGreeting()}, Happy Birthday! 💫`;
+finalText.textContent = `${getGreeting()}, Happy Birthday! `;
 
 // Update page
 function goToPage(index) {
@@ -33,12 +33,15 @@ function goToPage(index) {
   pages[index].classList.add('active');
   dots[index].classList.add('active');
   currentPage = index;
+  
   // Update glow color
   const color = pages[index].getAttribute('data-color');
   document.documentElement.style.setProperty('--glow-color', color);
+  
   // Update button states
   backBtn.disabled = index === 0;
   forwardBtn.disabled = index === pages.length - 1;
+  
   // Finale on last page
   if (index === pages.length - 1) {
     setTimeout(() => {
