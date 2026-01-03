@@ -2,9 +2,7 @@
   --glow-color: #7f5af0;
   --page-transition: all 0.5s ease;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
   min-height: 100vh;
   background: radial-gradient(circle at top, #1a1a2e, #000);
@@ -16,7 +14,6 @@ body {
   position: relative;
   user-select: none;
 }
-
 .stars {
   position: absolute; inset: 0;
   background:
@@ -29,11 +26,8 @@ body {
   animation: twinkle 6s infinite alternate;
   z-index: 0;
 }
-
 @keyframes twinkle { from { opacity: 0.25; } to { opacity: 0.45; } }
-
 #balloons { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-
 .container {
   position: relative;
   z-index: 2;
@@ -48,29 +42,23 @@ body {
   transition: var(--page-transition);
   border: 1px solid rgba(127, 90, 240, 0.2);
 }
-
 .page {
   display: none;
   animation: fadeIn 0.5s ease;
 }
-
 .page.active { display: block; }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
-
 .glow {
   font-size: 2.8rem;
   text-shadow: 0 0 18px var(--glow-color);
   margin-bottom: 8px;
 }
-
 .sub { font-size: 0.95rem; opacity: 0.8; margin-bottom: 18px; }
 .small { font-size: 0.9rem; opacity: 0.85; margin-top: 12px; line-height: 1.6; }
 .hint { font-size: 0.75rem; opacity: 0.55; margin-top: 16px; }
-
 .photo {
   width: 150px;
   height: 150px;
@@ -81,67 +69,20 @@ body {
   box-shadow: 0 0 30px var(--glow-color);
   transition: var(--page-transition);
 }
-
-/* Memory Carousel Styles */
-.memory-carousel {
-  width: 100%;
-  overflow: hidden;
-  margin: 30px 0;
-  border-radius: 24px;
-  position: relative;
-}
-
-.memory-track {
-  display: flex;
-  width: 100%;
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  gap: 0;
-}
-
-.memory-track::-webkit-scrollbar {
-  display: none;
-}
-
-.memory-track img {
-  width: 100%;
-  min-width: 100%;
-  height: 360px;
-  object-fit: cover;
-  flex-shrink: 0;
-  scroll-snap-align: center;
-  border-radius: 20px;
-  box-shadow: 0 0 30px var(--glow-color);
-  transition: all 0.4s ease;
-  user-drag: none;
-  -webkit-user-drag: none;
-}
-
-.carousel-indicators {
+.photo-grid {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin: 20px 0 10px;
+  gap: 14px;
+  margin: 20px 0;
 }
-
-.indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
+.photo-grid img {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 0 20px var(--glow-color);
 }
-
-.indicator.active {
-  background: var(--glow-color);
-  box-shadow: 0 0 15px var(--glow-color);
-  transform: scale(1.3);
-}
-
-/* Surprise Button */
+/* Beautiful Surprise Button */
 .surprise-btn {
   margin-top: 25px;
   padding: 14px 32px;
@@ -155,20 +96,17 @@ body {
   box-shadow: 0 8px 25px rgba(127, 90, 240, 0.4);
   transition: all 0.3s ease;
 }
-
 .surprise-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 35px rgba(127, 90, 240, 0.6);
 }
-
-/* Navigation */
+/* Navigation Buttons */
 .navigation {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
 }
-
 .nav-btn {
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.1);
@@ -180,24 +118,20 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
 .nav-btn:hover {
   background: var(--glow-color);
   transform: scale(1.05);
   box-shadow: 0 0 20px var(--glow-color);
 }
-
 .nav-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
   transform: none;
 }
-
 .dots {
   display: flex;
   gap: 10px;
 }
-
 .dot {
   width: 8px;
   height: 8px;
@@ -205,13 +139,11 @@ body {
   background: rgba(255,255,255,0.3);
   transition: all 0.3s;
 }
-
 .dot.active {
   background: var(--glow-color);
   box-shadow: 0 0 12px var(--glow-color);
 }
-
-/* Balloons */
+/* Balloons & Confetti */
 .balloon {
   position: absolute;
   bottom: -100px;
@@ -224,7 +156,6 @@ body {
   animation: floatUp 10s linear infinite;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
-
 .balloon::after {
   content: "";
   position: absolute;
@@ -235,17 +166,12 @@ body {
   background: #fff;
   transform: translateX(-50%);
 }
-
 @keyframes floatUp { to { transform: translateY(-130vh); } }
-
 #confetti { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
-
-/* Responsive */
 @media (max-width: 420px) {
   .container { padding: 30px; }
   .glow { font-size: 2.4rem; }
   .photo { width: 130px; height: 130px; }
-  .memory-track img { height: 300px; }
   .navigation { flex-direction: column; gap: 15px; }
   .nav-btn { width: 80%; }
 }
